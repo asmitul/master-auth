@@ -10,25 +10,74 @@ check auth use mongodb
 pip install master_auth
 ```
 
+example
 ### save password to mongodb
 ```python
 from master_auth import core
+import os
+import dotenv
+dotenv.load_dotenv()
 
-core.save_password(mongodb_username, mongodb_password, mongodb_host, mongodb_port, database_name,collection_name,username, password)
-```
+MONGODB_USER = os.getenv("MONGODB_USER")
+MONGODB_PASSWORD = os.getenv("MONGODB_PASSWORD")
+MONGODB_HOST = os.getenv("MONGODB_HOST")
+MONGODB_PORT = os.getenv("MONGODB_PORT")
+DATABASE_NAME =  os.getenv("MONGODB_DATABASE_NAME")
+COLLECTION_NAME = "master_auth"
 
-### check password from mongodb
-```python
-from master_auth import core
+def save_password(username,password):
+    result = core.save_password(
+        mongodb_username=MONGODB_USER,
+        mongodb_password=MONGODB_PASSWORD,
+        mongodb_host=MONGODB_HOST,
+        mongodb_port=MONGODB_PORT,
+        database_name = DATABASE_NAME,
+        collection_name = COLLECTION_NAME,
+        username = username,
+        password = password
+    )
 
-core.check_password(mongodb_username, mongodb_password, mongodb_host, mongodb_port, database_name,collection_name,username, password)
-```
+    print(result)
 
-### update password to mongodb
-```python
-from master_auth import core
+def update_password(username,password_old,password_new):
+    result = core.update_password(
+        mongodb_username=MONGODB_USER,
+        mongodb_password=MONGODB_PASSWORD,
+        mongodb_host=MONGODB_HOST,
+        mongodb_port=MONGODB_PORT,
+        database_name = DATABASE_NAME,
+        collection_name = COLLECTION_NAME,
+        username = username,
+        password_old = password_old,
+        password_new = password_new
+    )
 
-core.update_password(mongodb_username, mongodb_password, mongodb_host, mongodb_port, database_name,collection_name,username, password_old, password_new)
+    print(result)
+
+def verify_password(username,password):
+    result = core.verify_password(
+        mongodb_username=MONGODB_USER,
+        mongodb_password=MONGODB_PASSWORD,
+        mongodb_host=MONGODB_HOST,
+        mongodb_port=MONGODB_PORT,
+        database_name = DATABASE_NAME,
+        collection_name = COLLECTION_NAME,
+        username = username,
+        password = password
+    )
+
+    print(result)
+
+if __name__ == "__main__":
+    save_password("test","test")
+    # Username does not exist!
+    # Password saved successfully!
+
+    # update_password("test","test","test2")
+    # Password updated successfully!
+
+    # verify_password("test","test2")
+    # Password is correct!
 ```
 
 ## v0.0.1
