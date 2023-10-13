@@ -11,7 +11,6 @@ pip install master_auth
 ```
 
 example
-### save password to mongodb
 ```python
 from master_auth import core
 import os
