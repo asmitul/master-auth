@@ -4,6 +4,12 @@ check auth use mongodb
 
 <!-- insert useage -->
 ## how to use
+
+### install
+```python
+pip install master_auth
+```
+
 ### save password to mongodb
 ```python
 from master_auth import core
