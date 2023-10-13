@@ -10,7 +10,7 @@ check auth use mongodb
 pip install master_auth
 ```
 
-example
+### example
 ```python
 from master_auth import core
 import os
