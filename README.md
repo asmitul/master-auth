@@ -36,7 +36,12 @@ def save_password(username,password):
         password = password
     )
 
-    print(result)
+    if result:
+        print("Password saved successfully!")
+        return True
+    else:
+        print("Username already exists!")
+        return False
 
 def update_password(username,password_old,password_new):
     result = core.update_password(
@@ -51,7 +56,12 @@ def update_password(username,password_old,password_new):
         password_new = password_new
     )
 
-    print(result)
+    if result:
+        print("Password updated successfully!")
+        return True
+    else:
+        print("Old password is not correct!")
+        return False
 
 def verify_password(username,password):
     result = core.verify_password(
@@ -65,7 +75,12 @@ def verify_password(username,password):
         password = password
     )
 
-    print(result)
+   if result:
+        print("Password is correct!")
+        return True
+   else:
+        print("Password is not correct!")
+        return False
 
 if __name__ == "__main__":
     save_password("test","test")
