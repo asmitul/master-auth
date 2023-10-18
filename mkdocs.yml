@@ -1,10 +1,10 @@
 site_name: master_auth
-site_url: https://github.com/asmitul/master_auth
+site_url: https://github.com/asmitul/master-auth
 site_author: asmitul
 site_description: check auth use mongodb
 
 repo_name: asmitul/master_auth
-repo_url: https://github.com/asmitul/master_auth
+repo_url: https://github.com/asmitul/master-auth
 
 copyright: Copyright (c) 2023-present asmitul <asmitullah@gmail.com>
 

@@ -35,8 +35,8 @@ requires-python = ">=3.8,<3.12"
 
 [project.urls]
 Documentation = "https://asmitul.github.io/master_auth"
-Issues = "https://github.com/asmitul/master_auth/issues"
-Source = "https://github.com/asmitul/master_auth"
+Issues = "https://github.com/asmitul/master-auth/issues"
+Source = "https://github.com/asmitul/master-auth"
 
 [tool.hatch.version]
 path = "src/master_auth/__init__.py"
