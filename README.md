@@ -21,7 +21,7 @@ MONGODB_USER = os.getenv("MONGODB_USER")
 MONGODB_PASSWORD = os.getenv("MONGODB_PASSWORD")
 MONGODB_HOST = os.getenv("MONGODB_HOST")
 MONGODB_PORT = os.getenv("MONGODB_PORT")
-DATABASE_NAME =  os.getenv("MONGODB_DATABASE_NAME")
+DATABASE_NAME =  os.getenv("APP_NAME") + os.getenv("MONGODB_DATABASE_NAME")
 COLLECTION_NAME = "master_auth"
 
 def save_password(username,password):
@@ -93,6 +93,9 @@ if __name__ == "__main__":
     # verify_password("test","test2")
     # Password is correct!
 ```
+
+## v0.0.2
+- [x] update some bugs
 
 ## v0.0.1
 - [x] save password to mongodb , password is hashed

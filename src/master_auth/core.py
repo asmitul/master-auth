@@ -32,12 +32,16 @@ def verify_password(mongodb_username, mongodb_password, mongodb_host, mongodb_po
     collection = db[collection_name]
     user = collection.find_one({"username": username})
     
-    hashed_password = user["password"]
-    if bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8')):
-        print("Password is correct!")
-        return True
+    if user:
+        hashed_password = user["password"]
+        if bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8')):
+            print("Password is correct!")
+            return True
+        else:
+            print("Password is not correct!")
+            return False
     else:
-        print("Password is not correct!")
+        print("Username does not exist!")
         return False
 
 def update_password(mongodb_username, mongodb_password, mongodb_host, mongodb_port, database_name, collection_name, username, password_old, password_new):
@@ -46,19 +50,22 @@ def update_password(mongodb_username, mongodb_password, mongodb_host, mongodb_po
     collection = db[collection_name]
     user = collection.find_one({"username": username})
     
-    # check old password is correct or not
-    hashed_password = user["password"]
-    if bcrypt.checkpw(password_old.encode('utf-8'), hashed_password.encode('utf-8')):
-        result = collection.update_one({"username": username}, {"$set": {"password": hash_password(password_new)}})
-        if result.acknowledged:
-            print("Password updated successfully!")
-            return True
+    if user:
+        # check old password is correct or not
+        hashed_password = user["password"]
+        if bcrypt.checkpw(password_old.encode('utf-8'), hashed_password.encode('utf-8')):
+            result = collection.update_one({"username": username}, {"$set": {"password": hash_password(password_new)}})
+            if result.acknowledged:
+                print("Password updated successfully!")
+                return True
+            else:
+                print("Password not updated!")
+                return False
         else:
-            print("Password not updated!")
+            print("Old password is not correct!")
             return False
     else:
-        print("Old password is not correct!")
+        print("Username does not exist!")
         return False
-    
 
 
