@@ -24,7 +24,7 @@ MONGODB_PORT = os.getenv("MONGODB_PORT")
 DATABASE_NAME =  os.getenv("APP_NAME") + os.getenv("MONGODB_DATABASE_NAME")
 COLLECTION_NAME = "master_auth"
 
-def save_password(username,password):
+def save_password(username: str,password: str):
     result = core.save_password(
         mongodb_username=MONGODB_USER,
         mongodb_password=MONGODB_PASSWORD,
@@ -43,7 +43,7 @@ def save_password(username,password):
         print("Username already exists!")
         return False
 
-def update_password(username,password_old,password_new):
+def update_password(username: str,password_old: str,password_new: str):
     result = core.update_password(
         mongodb_username=MONGODB_USER,
         mongodb_password=MONGODB_PASSWORD,
@@ -63,7 +63,7 @@ def update_password(username,password_old,password_new):
         print("Old password is not correct!")
         return False
 
-def verify_password(username,password):
+def verify_password(username: str,password: str):
     result = core.verify_password(
         mongodb_username=MONGODB_USER,
         mongodb_password=MONGODB_PASSWORD,
